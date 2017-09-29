@@ -50,7 +50,7 @@ public class ChooseAreaFragment extends Fragment {
     private List<County> countyList;//县列表
     private Province selectedProvince;//选中的省份
     private City selectedCity;//选中的城市
-    private int curLv;//当前选中的级别
+    private int curLv = 0;//当前选中的级别
 
     @Nullable
     @Override
@@ -155,7 +155,7 @@ public class ChooseAreaFragment extends Fragment {
         }else{
             int provinceCode = selectedProvince.getProvinceCode();
             int cityCode = selectedCity.getCityCode();
-            String address = "http://guolin.tech/api/china/" + provinceCode + "/cityCode";
+            String address = "http://guolin.tech/api/china/" + provinceCode + "/"+cityCode;
             queryFromServer(address,"county");
         }
 
