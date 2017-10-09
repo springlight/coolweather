@@ -36,6 +36,7 @@ public class WeatherActivity extends AppCompatActivity {
     public SwipeRefreshLayout swipeRefresh;
     public DrawerLayout drawerLayout;
 
+    private String weatherId;
     private Button btnNav;
     private ScrollView weatherLayout;
     private TextView titleCityTxt;
@@ -91,7 +92,7 @@ public class WeatherActivity extends AppCompatActivity {
         });
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherStr = prefs.getString("weather",null);
-        final String weatherId;
+       // final String weatherId;
         if(weatherStr != null){
             //有缓存时，直接解析天气数据
             Weather weaher = Utility.handleWeatherRes(weatherStr);
@@ -161,6 +162,7 @@ public class WeatherActivity extends AppCompatActivity {
      * 根据天气id请求城市天气信息
      */
     public void reqWeatherInfo(final  String weatherId){
+        this.weatherId = weatherId;
         String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=3dc6a5a7640c4088b48ae46fa3137397";
         HttpUtil.sendOkHttpReq(weatherUrl, new Callback() {
             @Override
